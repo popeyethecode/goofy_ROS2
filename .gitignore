@@ -1,0 +1,33 @@
+# ROS 2 generated files
+build/
+install/
+log/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# ROS generated / temporary files
+*.bag
+*.db3
+
+# Colcon
+.colcon/
+
+# RViz temporary configs
+*.rviz.bak
+
+# Local network configuration
+cyclonedds.local.xml
+
+# Python virtual environments
+venv/
+.venv/

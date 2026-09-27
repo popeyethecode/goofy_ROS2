@@ -1,0 +1,41 @@
+serial_bridge_node:
+  ros__parameters:
+    # Serial link to the Arduino Nano. On a fresh Pi this is usually
+    # /dev/ttyUSB0 (CH340/FTDI adapters). With both the Nano and the
+    # RPLIDAR plugged in, run the udev rule setup in the README so this
+    # doesn't flip-flop with the lidar's port across reboots.
+    serial_port: "/dev/ttyUSB0"
+    baud_rate: 115200
+
+    # MUST match urdf/goofy.urdf.xacro in goofy_description
+    # (wheel_radius, and wheel_separation = 2 * wheel_y).
+    wheel_radius: 0.04         # meters
+    wheel_separation: 0.17     # meters, center-to-center
+
+    # Encoder ticks per one full wheel revolution (gearbox output shaft,
+    # i.e. AFTER the N20's internal gear reduction), both edges counted.
+    # Check your specific N20 encoder variant - this is a common value
+    # for the 6V/12V N20 with magnetic encoder but is NOT universal.
+    ticks_per_revolution: 700
+
+    # Open-loop PWM scaling: the PWM value (0-255) sent to the firmware
+    # for the wheel speed (m/s) that should correspond to full PWM.
+    # Start conservative and raise it once you've confirmed direction
+    # and rough speed are correct.
+    max_linear_speed: 0.25     # m/s at PWM = 255
+    min_pwm_to_move: 40        # deadband - PWM below this rarely turns the motor
+
+    # Safety: stop the motors if no /cmd_vel has arrived within this many
+    # seconds (protects against a dropped teleop connection).
+    cmd_vel_timeout: 0.5
+
+    odom_frame_id: "odom"
+    base_frame_id: "base_footprint"
+    # MUST match the continuous joint names in goofy.urdf.xacro.
+    left_wheel_joint: "base_left_wheel_joint"
+    right_wheel_joint: "base_right_wheel_joint"
+    publish_tf: true
+
+    # How often (Hz) to poll the serial port for new lines and to send
+    # the current motor command.
+    loop_rate_hz: 50.0

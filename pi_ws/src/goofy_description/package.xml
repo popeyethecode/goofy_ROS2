@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>goofy_description</name>
+  <version>2.0.0</version>
+  <description>URDF/xacro model of the goofy robot and its robot_state_publisher launch file.</description>
+  <maintainer email="josephinegangmei03@gmail.com">Josephine</maintainer>
+  <license>MIT</license>
+
+  <exec_depend>xacro</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
